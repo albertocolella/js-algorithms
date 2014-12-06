@@ -108,7 +108,6 @@ var bucketsort = function(array){
             buckets[array[i]]++;
         }
     }
-    console.log(buckets);
     tmp = 0;
     for(var i=0; i<buckets.length; i++){
         for(;buckets[i]>0;buckets[i]--){
