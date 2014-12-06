@@ -99,6 +99,25 @@ var insertionsort = function(array){
     return array;
 };
 
+var bucketsort = function(array){
+    var buckets = [];
+    for(var i=0; i<array.length; i++){
+        if(!buckets[array[i]] || isNaN(buckets[array[i]])){
+           buckets[array[i]]=1;           
+        } else {
+            buckets[array[i]]++;
+        }
+    }
+    console.log(buckets);
+    tmp = 0;
+    for(var i=0; i<buckets.length; i++){
+        for(;buckets[i]>0;buckets[i]--){
+            array[tmp++] = i;
+        }
+    }
+    return array;
+}
+
 // Fisher-Yates algorithm
 var shuffle = function(array) {
     for (var i = array.length - 1; i > 0; i--) {
@@ -133,4 +152,6 @@ document.write("\n");
 document.write('heapsort:       ', heapsort(arr.clone()));
 document.write("\n");
 document.write('insertionsort:  ', insertionsort(arr.clone()));
+document.write("\n");
+document.write('bucketsort:     ', bucketsort(arr.clone()));
 document.write('</pre><br />');
