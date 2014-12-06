@@ -85,6 +85,20 @@ var heapsort = (function(){
     return sort;
 }());
 
+var insertionsort = function(array){
+    for(var i=1; i<array.length; i++){
+        var temp = array[i];
+        for(var j=i; j>0; j--){
+            if(array[j-1]>=temp){
+               array[j] = array[j-1];
+               array[j-1] = temp;
+            }
+        }
+        
+    }
+    return array;
+};
+
 // Fisher-Yates algorithm
 var shuffle = function(array) {
     for (var i = array.length - 1; i > 0; i--) {
@@ -96,17 +110,27 @@ var shuffle = function(array) {
     return array;
 }
 
+Array.prototype.clone = function(){
+    var b = [];
+    for (var i = 0; i < this.length; i++) {
+      b[i] = this[i];
+    }
+    return b;
+}
+
 var arr = [];
 for(var i=0; i<10; i++){
     arr.push(Math.floor(Math.random()*100)+1);
 }
-srr = shuffle(arr);
+arr = shuffle(arr);
 document.write('<br /><pre>');
-document.write('array:     ', arr);
+document.write('original array: ', arr);
 document.write("\n\n");
-document.write('quicksort: ', quicksort(arr));
+document.write('quicksort:      ', quicksort(arr.clone()));
 document.write("\n");
-document.write('mergesort: ', mergesort(arr));
+document.write('mergesort:      ', mergesort(arr.clone()));
 document.write("\n");
-document.write('heapsort:  ', heapsort(arr));
+document.write('heapsort:       ', heapsort(arr.clone()));
+document.write("\n");
+document.write('insertionsort:  ', insertionsort(arr.clone()));
 document.write('</pre><br />');
